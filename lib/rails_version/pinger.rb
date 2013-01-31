@@ -3,9 +3,9 @@ module RailsVersion
     attr_accessor :body
 
     def initialize(request, response)
-      @body = response.body
-      @host = request.host
-      @version = Rails.version
+      @body = response.body.to_s
+      @host = request.host.to_s
+      @version = Rails.version.to_s
     end
 
     def ping!
