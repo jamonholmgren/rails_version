@@ -8,7 +8,14 @@ module RailsVersion
     # Specify what URL this gem will ping with its information.
     cattr_accessor :server_url
 
-    @@frequency = 1
+    @@frequency = 100
+    ##
+    # :singleton-method:
+    # Tells the client how frequent (randomly out of 10000) to ping
+    # the server. Default is 100 (1% of page loads).
+    cattr_accessor :frequency
+
+    @@account_identifier = ""
     ##
     # :singleton-method:
     # Tells the client how frequent (randomly out of 100) to ping
