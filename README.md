@@ -18,6 +18,12 @@ Get an account ID from http://railsversion.herokuapp.com/signup, then go to your
 
 You shouldn't have to do anything else!
 
+## Code Climate
+
+Version 0.1.0 Grade: A
+
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/clearsightstudio/rails_version)
+
 ## Contributing
 
 1. Fork it
