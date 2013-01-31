@@ -1,10 +1,14 @@
 module RailsVersion
   class Pinger
-    def initialize(body)
-      @body = body
+    attr_accessor :body
+
+    def initialize(request, response)
+      @body = response.body
+      @host = request.host
+      @version = Rails.version
     end
 
-    def ping
+    def ping!
       inject_script_before_end_body_tag
     end
 
@@ -13,7 +17,11 @@ module RailsVersion
     end
 
     def ping_script
-      "<script language='text/javascript' src='#{RailsVersion::Config.server_url}'></script>"
+      "<script language='text/javascript' src='#{ping_url}'></script>"
+    end
+
+    def ping_url
+      "#{RailsVersion::Config.server_url}/#{RailsVersion::Config.api_key}/?site=#{@host}&rails_version=#{@version}"
     end
   end
 end

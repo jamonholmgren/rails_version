@@ -1,4 +1,7 @@
 require "rails_version/version"
+require "rails_version/pinger"
+require "rails_version/rails_version_mixin"
+require 'rails_version/railtie' if defined? Rails
 
 module RailsVersion
   class Config
@@ -25,13 +28,12 @@ module RailsVersion
 
     ##
     # :singleton-method:
-    # Tells the client how frequent (randomly out of 100) to ping
-    # the server.
-    def self.account_identifier
-      @@account_identifier ||= nil
+    # API Key obtained from railsversion.herokuapp.com
+    def self.api_key
+      @@api_key ||= nil
     end
-    def self.account_identifier=(v)
-      @@account_identifier = v
+    def self.api_key=(v)
+      @@api_key = v
     end
   end
 end

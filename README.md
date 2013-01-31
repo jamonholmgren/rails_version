@@ -10,7 +10,7 @@ As usual, add this line to your application's Gemfile and bundle afterward:
 
     gem 'rails_version', :group => :production
 
-Get an account ID from http://railsversion.herokuapp.com/signup, then go to your config/production.rb file and add this:
+Get an account ID from http://railsversion.herokuapp.com/signup, then go to your config/environments/production.rb file and add this:
 
     RailsVersion::Config.account_identifier = "MYACCOUNTID"
 
