@@ -13,7 +13,7 @@ module RailsVersion
     end
 
     def ping_script
-      "<script language='text/javascript' src='#{RailsVersion::Config.server_url}'></script>".html_safe
+      "<script language='text/javascript' src='#{RailsVersion::Config.server_url}'></script>"
     end
   end
 end
