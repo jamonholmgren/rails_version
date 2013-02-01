@@ -36,7 +36,6 @@ class RailsVersionTest < Test::Unit::TestCase
   end
   def test_pinger_server
     RailsVersion::Config.ping_type = :server
-    RailsVersion::Config.server_url = "http://railsversion.herokuapp.com/ping"
     RailsVersion::Config.api_key = "TESTSERVER"
     pinger = RailsVersion::Pinger.new(FakeRequest.new, FakeResponse.new)
     pinger.ping!

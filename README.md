@@ -8,7 +8,7 @@ application versions.
 
 As usual, add this line to your application's Gemfile and bundle afterward:
 
-    gem 'rails_version', :group => :production, :git => "git://github.com/clearsightstudio/rails_version.git"
+    gem 'rails_version', ">= 0.2.0", :group => :production, :git => "git://github.com/clearsightstudio/rails_version.git"
 
 Get an account ID from http://railsversion.herokuapp.com, then go to your config/environments/production.rb file and add this:
 

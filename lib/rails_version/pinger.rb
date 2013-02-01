@@ -11,17 +11,12 @@ module RailsVersion
 
     def ping!
       case RailsVersion::Config.ping_type.to_sym
+      when :server
+        require 'open-uri'
+        open(ping_url) # Ping the server.
+        return false
       when :script
         inject_script_before_end_body_tag(ping_script)
-      when :server
-        require 'net/http'
-        url = URI.parse(ping_url)
-        req = Net::HTTP::Get.new(url.path)
-        res = Net::HTTP.start(url.host, url.port) { |http|
-          http.request(req)
-        }
-        url = req = res = nil # Dump any response.
-        return false
       else
         inject_script_before_end_body_tag(ping_image)
       end
