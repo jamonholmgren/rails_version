@@ -21,20 +21,20 @@ class RailsVersionTest < Test::Unit::TestCase
     pinger = RailsVersion::Pinger.new(FakeRequest.new, FakeResponse.new)
     pinger.ping!
     body = pinger.body
-    assert_equal true, body.include?("</script></body>")
+    assert body.include?("</script></body>")
   end
   def test_pinger_injects_image
     RailsVersion::Config.ping_type = :image
     pinger = RailsVersion::Pinger.new(FakeRequest.new, FakeResponse.new)
     pinger.ping!
     body = pinger.body
-    assert_equal true, body.include?("<img src='")
+    assert body.include?("<img src='")
   end
   def test_pinger_server
     RailsVersion::Config.ping_type = :server
     pinger = RailsVersion::Pinger.new(FakeRequest.new, FakeResponse.new)
     pinger.ping!
     # Pretty weak, I know, but at least the library was loaded
-    assert_equal true, Object.const_defined?('Net')
+    assert Object.const_defined?('Net')
   end
 end
