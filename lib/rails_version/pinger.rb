@@ -1,23 +1,44 @@
 module RailsVersion
   class Pinger
-    attr_accessor :body
+    attr_accessor :body, :version, :host
 
     def initialize(request, response)
       @body = response.body.to_s
       @host = request.host.to_s
-      @version = Rails.version.to_s
+      @version = "Non-Rails"
+      @version = Rails.version.to_s if Object.const_defined?('Rails')
     end
 
     def ping!
-      inject_script_before_end_body_tag
+      case RailsVersion::Config.ping_type.to_sym
+      when :script
+        inject_script_before_end_body_tag(ping_script)
+      when :server
+        require 'net/http'
+        Thread.new do # Create new thread to not 
+          url = URI.parse(ping_url)
+          req = Net::HTTP::Get.new(url.path)
+          res = Net::HTTP.start(url.host, url.port) { |http|
+            http.request(req)
+          }
+          # Dump any response.
+          url = req = res = nil
+        end
+      else
+        inject_script_before_end_body_tag(ping_image)
+      end
     end
 
-    def inject_script_before_end_body_tag
-      @body.sub! /<\/[bB][oO][dD][yY]>/, "#{ping_script}</body>" if @body && @body.respond_to?(:sub!)
+    def inject_script_before_end_body_tag(ping_html)
+      @body.sub! /<\/[bB][oO][dD][yY]>/, "#{ping_html}</body>" if @body && @body.respond_to?(:sub!)
     end
 
     def ping_script
       "<script language='text/javascript' src='#{ping_url}'></script>"
+    end
+
+    def ping_image
+      "<img src='#{ping_url}' style='display:none;visibility:hidden' width='0' height='0' />"
     end
 
     def ping_url
