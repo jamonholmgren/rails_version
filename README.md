@@ -8,9 +8,9 @@ application versions.
 
 As usual, add this line to your application's Gemfile and bundle afterward:
 
-    gem 'rails_version', :group => :production
+    gem 'rails_version', :group => :production, :git => "git://github.com/clearsightstudio/rails_version.git"
 
-Get an account ID from http://railsversion.herokuapp.com/signup, then go to your config/environments/production.rb file and add this:
+Get an account ID from http://railsversion.herokuapp.com, then go to your config/environments/production.rb file and add this:
 
     RailsVersion::Config.account_identifier = "MYACCOUNTID"
 
