@@ -17,6 +17,20 @@ module RailsVersion
 
     ##
     # :singleton-method:
+    # Specify what type of ping to use.
+    # Options:
+    # :server (default: safest, server-side)
+    # :image  (embed img tag before </body>)
+    # :script (embeds external js tag)
+    def self.ping_type
+      @@ping_type ||= :server
+    end
+    def self.ping_type=(v)
+      @@ping_type = v
+    end
+
+    ##
+    # :singleton-method:
     # Tells the client how frequent (randomly out of 10000) to ping
     # the server. Default is 100 (1% of page loads).
     def self.frequency
