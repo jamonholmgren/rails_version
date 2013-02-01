@@ -15,7 +15,7 @@ module RailsVersion
         inject_script_before_end_body_tag(ping_script)
       when :server
         require 'net/http'
-        Thread.new do # Create new thread to not 
+        Thread.new do # Create new thread to not block the page load.
           url = URI.parse(ping_url)
           req = Net::HTTP::Get.new(url.path)
           res = Net::HTTP.start(url.host, url.port) { |http|
