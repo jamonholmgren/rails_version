@@ -20,7 +20,7 @@ module RailsVersion
       else
         inject_script_before_end_body_tag(ping_image)
       end
-    rescue Timeout::Error
+    rescue # Blind rescue...no exceptions shown.
       false
     end
 
