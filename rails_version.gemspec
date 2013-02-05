@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["jamon@clearsightstudio.com"]
   gem.description   = %q{ Pings a server and reports the current app's Rails version. }
   gem.summary       = %q{ Pings a server and reports the current app's Rails version. }
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/clearsightstudio/rails_version"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
