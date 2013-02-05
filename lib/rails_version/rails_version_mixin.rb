@@ -8,6 +8,8 @@ module RailsVersion
         pinger = RailsVersion::Pinger.new(request, response)
         response.body = pinger.body if pinger.ping!
       end
+    rescue OpenURI::HTTPError
+      nil # No HTTPError here! Nuh uh. Nope. Nothing to see here.
     end
   end
 end
