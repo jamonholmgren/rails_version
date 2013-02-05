@@ -18,15 +18,14 @@ Sign up and get your API key from http://railsversion.herokuapp.com, then go to 
 
 If you want to manually trigger a ping, go to:
 
-    http://example.com/?rails_version_ping=API_KEY_HERE
+    http://yourdomain.com/?rails_version_ping=API_KEY_HERE
 
-Just replace example.com with your domain name and API_KEY_HERE with your API key.
+Just replace yourdomain.com with your domain name and API_KEY_HERE with your API key.
 
 ## Configuration Options
 
 We have good defaults, but we do expose some config options:
 
-* `RailsVersion::Config.server_url = "http://yourserver/ping"` - allows you to ping your own server instead of ours.
 * `RailsVersion::Config.ping_type = :server | :image | :script` - :server is default and the safest, but you can also inject an image or javascript tag into your HTML if the :server option isn't working for you.
 * `RailsVersion::Config.frequency = 100` - 100 is a 1% chance on page load of pinging our server (default). Turn this down if you have a lot of traffic or up if you have very little traffic. Your server should ping ours about once every couple days on average.
 * `RailsVersion::Config.api_key = "API_KEY_HERE"` - *required* API key from http://railsversion.herokuapp.com if you're using our server.

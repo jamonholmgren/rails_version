@@ -9,10 +9,7 @@ module RailsVersion
     # :singleton-method:
     # Specify what URL this gem will ping with its information.
     def self.server_url
-      @@server_url ||= "https://railsversion.herokuapp.com/ping"
-    end
-    def self.server_url=(v)
-      @@server_url = v
+      @@server_url = "https://railsversion.herokuapp.com/ping"
     end
 
     ##
