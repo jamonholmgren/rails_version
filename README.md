@@ -28,7 +28,7 @@ We have good defaults, but we do expose some config options:
 
 * `RailsVersion::Config.ping_type = :server | :image | :script` - :server is default and the safest, but you can also inject an image or javascript tag into your HTML if the :server option isn't working for you.
 * `RailsVersion::Config.frequency = 100` - 100 is a 1% chance on page load of pinging our server (default). Turn this down if you have a lot of traffic or up if you have very little traffic. Your server should ping ours about once every couple days on average.
-* `RailsVersion::Config.api_key = "API_KEY_HERE"` - *required* API key from http://railsversion.herokuapp.com if you're using our server.
+* `RailsVersion::Config.api_key = "API_KEY_HERE"` - *required* Free API key from http://railsversion.herokuapp.com.
 
 ## Code Climate
 
