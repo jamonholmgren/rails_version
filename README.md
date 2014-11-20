@@ -14,6 +14,10 @@ Sign up and get your API key from http://railsversion.herokuapp.com, then go to 
 
     RailsVersion::Config.api_key = "API_KEY_HERE"
 
+If you have an app that has dynamic subdomains (such as multiple sites running on the same app), you can set a "canonical" App Name, so all the domains will be updated when the gem reports on one of them.
+
+    RailsVersion::Config.app_name = "CANONICAL_APP_NAME"
+
 ## Manual Ping
 
 If you want to manually trigger a ping, go to:

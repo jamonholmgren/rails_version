@@ -46,5 +46,22 @@ module RailsVersion
     def self.api_key=(v)
       @@api_key = v
     end
+
+    ##
+    # :singleton-method:
+    # Canonical App Name
+    # This allows Apps that work with dynamic subdomains to update all
+    # domains on railsversion.herokuap.com with that canonical name
+    # e.g
+    #   Domain 1: example.com
+    #   Domain 2: sub.example.com
+    # When app_name is set, it will send it along to the API when it pings
+    # And both domains will be updated
+    def self.app_name
+      @@app_name ||= nil
+    end
+    def self.app_name=(v)
+      @@app_name = v
+    end
   end
 end

@@ -6,7 +6,7 @@ module RailsVersion
       manual_ping = params[:rails_version_ping] == RailsVersion::Config.api_key
       if manual_ping || rand(10000) < RailsVersion::Config.frequency
         pinger = RailsVersion::Pinger.new(request, response)
-        response.body = pinger.body if pinger.ping!
+        response.body = pinger.body if pinger.modified_body?
       end
     rescue OpenURI::HTTPError
       nil # No HTTPError here! Nuh uh. Nope. Nothing to see here.

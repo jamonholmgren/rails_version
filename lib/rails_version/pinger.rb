@@ -1,10 +1,12 @@
 module RailsVersion
   class Pinger
-    attr_accessor :body, :version, :host
+    attr_accessor :body, :version, :host, :app_name
 
     def initialize(request, response)
+      @modified_body = false
       @body = response.body.to_s
       @host = request.host.to_s
+      @app_name = RailsVersion::Config.app_name.to_s
       @version = "Non-Rails"
       @version = Rails.version.to_s if Object.const_defined?('Rails')
     end
@@ -14,7 +16,6 @@ module RailsVersion
       when :server
         require 'open-uri'
         open(ping_url) # Ping the server.
-        return false
       when :script
         inject_script_before_end_body_tag(ping_script)
       else
@@ -24,7 +25,12 @@ module RailsVersion
       false
     end
 
+    def modified_body?
+      @modified_body
+    end
+
     def inject_script_before_end_body_tag(ping_html)
+      @modified_body = true
       @body.sub! /<\/[bB][oO][dD][yY]>/, "#{ping_html}</body>" if @body && @body.respond_to?(:sub!)
     end
 
@@ -37,7 +43,7 @@ module RailsVersion
     end
 
     def ping_url
-      "#{RailsVersion::Config.server_url}/#{RailsVersion::Config.api_key}/?site=#{@host}&rails_version=#{@version}"
+      "#{RailsVersion::Config.server_url}/#{RailsVersion::Config.api_key}/?site=#{@host}&rails_version=#{@version}&app_name=#{@app_name}"
     end
   end
 end
